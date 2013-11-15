@@ -45,24 +45,21 @@
     </ceci-app>
 
     <script>
-      mocha.setup('bdd');
-      chai.should();
-
-      describe('ceci-button', function(){
-        var button = document.querySelector('ceci-button#hello-button');
-        var valueHolder = document.querySelector('ceci-value-holder#value-holder');
-
-        it('should send a broadcast on blue when clicked', function(){
-          valueHolder.setValue('boo');
-          valueHolder.getValue().should.equal('boo');
-          button.buttonClick();
-          valueHolder.getValue().should.equal('hi');
-        });
-      });
-    </script>
-
-    <script>
       window.addEventListener('WebComponentsReady', function(e) {
+        mocha.setup('bdd');
+        chai.should();
+
+        describe('ceci-button', function(){
+          var button = document.querySelector('ceci-button#hello-button');
+          var valueHolder = document.querySelector('ceci-value-holder#value-holder');
+
+          it('should send a broadcast on blue when clicked', function(){
+            valueHolder.setValue('boo');
+            valueHolder.getValue().should.equal('boo');
+            button.buttonClick();
+            valueHolder.getValue().should.equal('hi');
+          });
+        });
         mocha.run();
       });
     </script>

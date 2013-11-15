@@ -7,7 +7,6 @@ var argv = require('optimist').argv;
 
 var TEST_URL = "http://localhost:4321/";
 var areOffline = false;
-console.log (argv.o);
 if (argv.o) {
 	console.log("The internet isn't around, so we'll get testing assets from:\n  ", TEST_URL);
 	areOffline = true;

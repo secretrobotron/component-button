@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+
+    <link rel="import" href="https://appmaker.mozillalabs.com/test_assets/ceci/ceci-broadcast.html">
+    <link rel="import" href="https://appmaker.mozillalabs.com/test_assets/ceci/ceci-listen.html">
+    <link rel="import" href="https://appmaker.mozillalabs.com/test_assets/ceci/ceci-element.html">
+    <link rel="import" href="https://appmaker.mozillalabs.com/test_assets/ceci/ceci-app.html">
+    <link rel="import" href="https://appmaker.mozillalabs.com/test_assets/ceci/ceci-card.html">
+    <link rel="import" href="https://appmaker.mozillalabs.com/test_assets/ceci/test/fixtures/ceci-value-holder.html">
+
+    <!-- The component we're testing here. -->
+    <link rel="import" href="component.html">
+
+    <script src="https://appmaker.mozillalabs.com/test_assets/vendor/polymer/polymer.min.js"></script>
+    <style>
+      ceci-app {
+        float: left
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://appmaker.mozillalabs.com/test_assets/vendor/mocha/mocha.css">
+  </head>
+  <body>
+
+    <div id="mocha"></div>
+    <script src="https://appmaker.mozillalabs.com/test_assets/vendor/mocha/mocha.js"></script>
+    <script src="https://appmaker.mozillalabs.com/test_assets/vendor/chai/chai.js"></script>
+    <script src="https://appmaker.mozillalabs.com/test_assets/vendor/sinon/lib/sinon.js"></script>
+
+    <ceci-app id="hello-app">
+      <ceci-card visible>
+        <ceci-top>
+          <ceci-button id="hello-button" class="hi" label="Say hello!" value="hi">
+          </ceci-button>
+        </ceci-top>
+        <ceci-middle>
+          <ceci-value-holder id="value-holder">
+            <ceci-listen on="blue" for="setValue"></ceci-listen>
+          </ceci-value-holder>
+        </ceci-middle>
+        <ceci-bottom>
+        </ceci-bottom>
+      </ceci-card>
+    </ceci-app>
+
+    <script>
+      mocha.setup('bdd');
+      chai.should();
+
+      describe('ceci-button', function(){
+        var button = document.querySelector('ceci-button#hello-button');
+        var valueHolder = document.querySelector('ceci-value-holder#value-holder');
+
+        it('should send a broadcast on blue when clicked', function(){
+          valueHolder.setValue('boo');
+          valueHolder.getValue().should.equal('boo');
+          button.buttonClick();
+          valueHolder.getValue().should.equal('hi');
+        });
+      });
+    </script>
+
+    <script>
+      window.addEventListener('WebComponentsReady', function(e) {
+        mocha.run();
+      });
+    </script>
+  </body>
+</html>

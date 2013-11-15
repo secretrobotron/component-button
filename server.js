@@ -16,11 +16,19 @@ if (argv.o) {
   areOffline = true;
 }
 
+var PORT = '1234';
+console.log("\n\nWe are serving your component test page at: http://localhost:" + PORT); 
+
 if (areOffline) {
   app.use(function (req, res, next) {
+    var regex = /<link rel="import" href="..\/(.*)\/component.html">/g;
     var write = res.write;
       res.write = function(chunk, encoding){
-        var s = String(chunk).split('https://appmaker.mozillalabs.com/test_assets/').join(TEST_URL);
+        var s = String(chunk);
+        s = s.split('https://appmaker.mozillalabs.com/test_assets/').join(TEST_URL);
+        s = s.replace(regex, function (match, p1) {
+            return '<link rel="import" href="/component/' + p1 + '/component.html">';
+        });
         return write.call(res, s, encoding);
       };
     next();
@@ -36,7 +44,7 @@ var allowCrossDomain = function(req, res, next) {
 }
 app.use(allowCrossDomain);
 
-app.get('/component/:id', function(req, res) {
+app.get('/component/:id/component.html', function(req, res) {
   var componentName = req.params['id'];
   var url = "http://mozilla-appmaker.github.io/" + componentName + "/component.html";
   if (url) {
@@ -59,4 +67,4 @@ app.get('/component/:id', function(req, res) {
 
 app.use(express.static(__dirname));
 
-app.listen(1234);
+app.listen(PORT);

@@ -23,6 +23,11 @@
     "karma-crbot-reporter": "*",
     "karma-browserstack-launcher": "0.0.4",
     "karma-ios-launcher": "0.0.3",
-    "open": "0.0.4"
+    "open": "0.0.4",
+    "grunt": "~0.4.2",
+    "grunt-karma": "~0.6.2",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-open": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }

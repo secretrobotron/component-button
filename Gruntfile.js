@@ -44,5 +44,10 @@ module.exports = function(grunt) {
 
     grunt.task.run('connect:server');
   });
+  grunt.registerTask('default', 'help message', function() {
+    grunt.log.writeln('\n\nRun:\n\'grunt karma:dev\' for continuous testing');
+    grunt.log.writeln('\'grunt karma:unit\' to just run the test once');
+    grunt.log.writeln('\'grunt test-server\' to display the test runner page');
+  });
   // grunt.registerTask('default', ['connect']);
 };

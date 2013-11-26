@@ -3,7 +3,6 @@ module.exports = function(karma) {
   karma.set(common.mixin_common_opts(karma, {
     // base path, that will be used to resolve files and exclude
     basePath: '../..',
-    browsers: ['Chrome'], // , 'ChromeCanaryExperimental', 'Firefox', 'Safari'];
     preprocessors: {
       'component-button/test/fixtures/*.html': ['html2js']
     },
@@ -12,7 +11,6 @@ module.exports = function(karma) {
       'tools/test/mocha-htmltest.js',
       'component-button/conf/mocha.conf.js',
       'component-button/node_modules/chai/chai.js',
-      // {pattern: 'component-button/test/components.html', included: false},
       'appmaker/public/vendor/polymer/polymer.min.js',
       'appmaker/public/vendor/mocha/mocha.js',
       {pattern: 'component-button/test/fixtures/*.html', included: true},

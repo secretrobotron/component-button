@@ -17,6 +17,11 @@ module.exports = function(grunt) {
         singleRun: true,
         browsers: ['FirefoxNightly']
       },
+      ci: {
+        configFile: 'conf/karma.conf.js',
+        singleRun: true,
+        browsers: ['Firefox']
+      },
       dev: {
         configFile: 'conf/karma.conf.js',
         singleRun: false,

@@ -5,6 +5,9 @@
     "optimist": "~0.6.0",
     "supervisor": "~0.5.6"
   },
+  "scripts": {
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+  },
   "devDependencies": {
     "mocha": "~1.14.0",
     "karma-script-launcher": "*",

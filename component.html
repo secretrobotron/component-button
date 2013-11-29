@@ -2,7 +2,7 @@
   label="Click Me">
   <template>
     <link rel="stylesheet" href="component.css"></link>
-    <button id="button" on-click="{{buttonClick}}"></button>
+    <button id="button" on-click="{{click}}"></button>
     <content select="ceci-broadcast"></content>
     <content select="ceci-listen"></content>
     <shadow></shadow>
@@ -12,7 +12,7 @@
       ready: function () {
         this.super();
       },
-      buttonClick: function () {
+      click: function () {
         this.broadcast('click', this.getAttribute('value'));
       },
       labelChanged: function (oldValue, newValue) {
@@ -26,9 +26,6 @@
       },
       buttonactivecolorChanged: function (oldValue, newValue) {
       },
-      setNonAttribute: function (v) {
-        console.log('test');
-      },
       ceci: {
         broadcasts: {
           click: 'Occurs when button is clicked.'
@@ -40,7 +37,7 @@
           setTextColor: 'Set Text Color',
           setButtonColor: 'Set Button Color',
           setButtonActiveColor: 'Set Active Button Color',
-          setNonAttribute: 'Do something other than just set attributes'
+          click: 'Initiate a click event'
         },
         editable: {
           'label': {

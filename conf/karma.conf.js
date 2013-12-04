@@ -22,6 +22,7 @@ module.exports = function(karma) {
     files: [
       componentPath + 'tools/component-name.js',
       componentPath + 'tools/harness-utils.js',
+      componentPath + 'tools/iframe-utils.js',
       componentPath + 'conf/mocha.conf.js',
       'appmaker/public/vendor/polymer/polymer.min.js',
       'appmaker/public/vendor/mocha/mocha.js',

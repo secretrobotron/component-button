@@ -14,7 +14,7 @@
   describe('Ceci Button', function () {
 
     test('Sanity check', function (done) {
-      chai.assert(buttonElement.$.button, 'Button in MVW framework.');
+      chai.assert(buttonElement.$.button, 'Button recognized and exposed by Polymer.');
       chai.assert(buttonElement.ceci, 'Ceci descriptor exists.');
       chai.assert(buttonElement.ceci.broadcasts, 'Ceci broadcasts publicized.');
       chai.assert(buttonElement.ceci.listeners, 'Ceci listeners publicized.');

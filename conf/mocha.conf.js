@@ -1,1 +1,1 @@
-mocha.setup({ui:'tdd',htmlbase: 'base/component-button/',ignoreLeaks: true, timeout: 10000});
+mocha.setup({ui:'tdd', ignoreLeaks: true, timeout: 10000, htmlbase: window.__karmaHtmlBase__});

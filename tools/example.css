@@ -1,0 +1,17 @@
+#app-container {
+  width: 350px;
+  height: 450px;
+  padding: 4px;
+  border-radius: 10px;
+  border: 7px solid rgba(30, 30, 30, 0.6);
+  background: rgba(30, 30, 30, 0.6);
+}
+
+ceci-app {
+  background: transparent;
+}
+
+.dg .property-name {
+  overflow: auto;
+  white-space: nowrap;
+}

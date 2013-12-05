@@ -1,5 +1,5 @@
 <polymer-element name="ceci-button" attributes="textcolor buttoncolor buttonactivecolor label value" extends="ceci-element"
-  label="Click Me" textcolor="#ffffff" buttoncolor="#4DB227" buttonactivecolor="#4DB227">
+  label="Click Me" textcolor="#ffffff" buttoncolor="#4DB227" buttonactivecolor="#358915">
   <template>
     <link rel="stylesheet" href="component.css"></link>
     <button id="button" on-click="{{click}}"></button>
@@ -11,6 +11,17 @@
     Polymer('ceci-button', {
       ready: function () {
         this.super();
+
+        var that = this;
+        this.$.button.addEventListener('mousedown', function (e) {
+          var valueBefore = that.buttoncolor;
+          if (that.buttonactivecolor) {
+            that.$.button.style.backgroundColor = that.buttonactivecolor;
+            window.addEventListener('mouseup', function (e) {
+              that.$.button.style.backgroundColor = valueBefore;
+            }, false);
+          }
+        }, false);
       },
       click: function () {
         this.broadcast('click', this.getAttribute('value'));

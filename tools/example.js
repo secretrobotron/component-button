@@ -10,6 +10,7 @@
 
       var gui = new dat.GUI();
 
+      var editableFolder = gui.addFolder('Editable');
       var broadcastsFolder = gui.addFolder('Broadcasts');
       var listenersFolder = gui.addFolder('Listeners');
 
@@ -20,7 +21,7 @@
         var inputLabel = 'Value';
         var toggleControllerName = 'Listen';
 
-        var listenerSubFolder = listenersFolder.addFolder(listenerKey);
+        var subFolder = listenersFolder.addFolder(listenerKey);
 
         model[inputLabel] = element.getAttribute(listenerKey.substr(3)) || '';
 
@@ -34,8 +35,8 @@
           }
         };
 
-        listenerSubFolder.add(model, inputLabel);
-        listenerSubFolder.add(model, listenerLabel);
+        subFolder.add(model, inputLabel);
+        subFolder.add(model, listenerLabel);
 
         var channel = 'Channel ' + __channels++;
 
@@ -51,24 +52,24 @@
 
         model[toggleControllerName] = element.ceci.defaultListeners ? element.ceci.defaultListeners.indexOf(listenerKey) > -1 : false;
 
-        var controller = listenerSubFolder.add(model, toggleControllerName);
+        var controller = subFolder.add(model, toggleControllerName);
         controller.onChange(function (value) {
           value ? element.appendChild(listenElement) : element.removeChild(listenElement);
         });
 
         if (model[toggleControllerName]) {
-          listenerSubFolder.open();
+          subFolder.open();
         }
       });
 
       Object.keys(element.ceci.broadcasts).forEach(function (broadcastKey) {
         var model = {};
-        var broadcastSubFolder = broadcastsFolder.addFolder(broadcastKey);
+        var subFolder = broadcastsFolder.addFolder(broadcastKey);
         var channel = 'Channel ' + __channels++;
         var broadcastLabel = 'Broadcast';
         model[broadcastLabel] = element.ceci.defaultBroadcasts ? element.ceci.defaultBroadcasts.indexOf(broadcastKey) > -1 : false;
         model['Output'] = '';
-        var controller = broadcastSubFolder.add(model, broadcastLabel);
+        var controller = subFolder.add(model, broadcastLabel);
         var broadcastElement = element.querySelector('ceci-broadcast[from="' + broadcastKey + '"]') || document.createElement('ceci-broadcast');
         broadcastElement.setAttribute('from', broadcastKey);
         broadcastElement.setAttribute('on', channel);
@@ -76,7 +77,7 @@
           value ? element.appendChild(broadcastElement) : element.removeChild(broadcastElement);
         });
 
-        var outputController = broadcastSubFolder.add(model, 'Output');
+        var outputController = subFolder.add(model, 'Output');
 
         document.addEventListener(channel, function (e) {
           model['Output'] = e.detail.data;
@@ -84,12 +85,32 @@
         }, false);
 
         if (model[broadcastLabel]) {
-          broadcastSubFolder.open();
+          subFolder.open();
         }
+      });
+
+      Object.keys(element.ceci.editable).forEach(function (editableKey) {
+        var subFolder = editableFolder.addFolder(editableKey);
+        var model = {};
+        var controller;
+
+        model[editableKey] = element.getAttribute(editableKey) || '';
+        if (model[editableKey] && element.ceci.editable[editableKey].type === 'color') {
+          controller = subFolder.addColor(model, editableKey);
+        }
+        else {
+          controller = subFolder.add(model, editableKey)
+        }
+
+        controller.onChange(function (value) {
+          element.setAttribute(editableKey, value);
+        });
+        subFolder.open();
       });
 
       listenersFolder.open();
       broadcastsFolder.open();
+      editableFolder.open();
     }
     else {
       console.error('No ceci element marked with data-analyze');

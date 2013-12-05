@@ -1,5 +1,5 @@
 <polymer-element name="ceci-button" attributes="textcolor buttoncolor buttonactivecolor label value" extends="ceci-element"
-  label="Click Me">
+  label="Click Me" textcolor="#ffffff" buttoncolor="#4DB227" buttonactivecolor="#4DB227">
   <template>
     <link rel="stylesheet" href="component.css"></link>
     <button id="button" on-click="{{click}}"></button>
@@ -46,17 +46,17 @@
             name: 'Label',
           },
           'textcolor': {
-            type: "text",
+            type: "color",
             description: "The color of the button label",
             name: 'Text Color'
           },
           'buttoncolor': {
-            type: "text",
+            type: "color",
             description: "The color of your button",
             name: 'Button Color'
           },
           'buttonactivecolor': {
-            type: "text",
+            type: "color",
             description: "The color of your button",
             name: 'Button Active Color'
           },

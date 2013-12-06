@@ -5,24 +5,30 @@
     <button id="button" on-click="{{click}}"></button>
     <shadow></shadow>
     <ceci-definition>
-      <ceci-broadcast-definitions>
-        <ceci-broadcast-definition name="click" description="Occurs when button is clicked." default="true"/>
-      </ceci-broadcast-definitions>
-      <ceci-listener-definitions>
-        <ceci-listener-definition attribute="label" label="Set Label" description="Changes the text shown on the button."/>
-        <ceci-listener-definition attribute="value" label="Set Value" description="Changes the value sent by the button."/>
-        <ceci-listener-definition attribute="textcolor" label="Set Text Color" description="Changes the color of the button's label."/>
-        <ceci-listener-definition attribute="buttoncolor" label="Set Button Color" description="Changes the background color of the button."/>
-        <ceci-listener-definition attribute="buttonactivecolor" label="Set Button Active Color" description="Changes the background color of the button while it is being clicked or tapped."/>
-        <ceci-listener-definition function="click" label="Click" description="Causes a fake click event to occur."/>
-      </ceci-listener-definitions>
-      <ceci-editable-definitions>
-        <ceci-editable-definition attribute="label" type="text" label="Label" description="Text shown on the button" />
-        <ceci-editable-definition attribute="value" type="text" label="Set Value" description="Value sent by the button."/>
-        <ceci-editable-definition attribute="textcolor" type="color" label="Set Text Color" description="Color of the button's label."/>
-        <ceci-editable-definition attribute="buttoncolor" type="color" label="Set Button Color" description="Background color of the button."/>
-        <ceci-editable-definition attribute="buttonactivecolor" type="color" label="Set Button Active Color" description="Background color of the button while it is being clicked or tapped."/>
-      </ceci-editable-definitions>
+      <ceci-definition-tags>
+        <ceci-definition-tag value="button">
+        <ceci-definition-tag value="click">
+        <ceci-definition-tag value="tap">
+      </ceci-definition-tags>
+      <ceci-definition-thumbnail href="./thumbnail.png"/>
+      <ceci-definition-broadcasts>
+        <ceci-definition-broadcast name="click" description="Occurs when button is clicked." default="true"/>
+      </ceci-definition-broadcasts>
+      <ceci-definition-listeners>
+        <ceci-definition-listener attribute="label" label="Set Label" description="Changes the text shown on the button."/>
+        <ceci-definition-listener attribute="value" label="Set Value" description="Changes the value sent by the button."/>
+        <ceci-definition-listener attribute="textcolor" label="Set Text Color" description="Changes the color of the button's label."/>
+        <ceci-definition-listener attribute="buttoncolor" label="Set Button Color" description="Changes the background color of the button."/>
+        <ceci-definition-listener attribute="buttonactivecolor" label="Set Button Active Color" description="Changes the background color of the button while it is being clicked or tapped."/>
+        <ceci-definition-listener function="click" label="Click" description="Causes a fake click event to occur."/>
+      </ceci-definition-listeners>
+      <ceci-definition-editables>
+        <ceci-definition-editable attribute="label" type="text" label="Label" description="Text shown on the button" />
+        <ceci-definition-editable attribute="value" type="text" label="Set Value" description="Value sent by the button."/>
+        <ceci-definition-editable attribute="textcolor" type="color" label="Set Text Color" description="Color of the button's label."/>
+        <ceci-definition-editable attribute="buttoncolor" type="color" label="Set Button Color" description="Background color of the button."/>
+        <ceci-definition-editable attribute="buttonactivecolor" type="color" label="Set Button Active Color" description="Background color of the button while it is being clicked or tapped."/>
+      </ceci-definition-editables>
     </ceci-definition>
   </template>
   <script>

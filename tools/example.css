@@ -1,3 +1,7 @@
+body {
+  font-family: sans-serif;
+}
+
 #app-container {
   width: 350px;
   height: 450px;
@@ -14,4 +18,10 @@ ceci-app {
 .dg .property-name {
   overflow: auto;
   white-space: nowrap;
+}
+
+#description {
+  position: absolute;
+  left: 400px;
+  top: 0;
 }

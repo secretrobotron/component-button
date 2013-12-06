@@ -110,6 +110,13 @@
       listenersFolder.open();
       broadcastsFolder.open();
       editableFolder.open();
+
+      var descriptionElement = document.querySelector('#description');
+      descriptionElement.querySelector('h1').innerHTML = element.localName;
+      var thumbnailImage = document.createElement('img');
+      thumbnailImage.src = element.ceci.thumbnail;
+      descriptionElement.querySelector('#thumbnail').appendChild(thumbnailImage);
+      descriptionElement.querySelector('#tags').appendChild(document.createTextNode(element.ceci.tags.join(', ')));
     }
     else {
       console.error('No ceci element marked with data-analyze');

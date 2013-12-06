@@ -40,10 +40,6 @@
 
         var channel = 'Channel ' + __channels++;
 
-        var listenElement = document.createElement('ceci-listen');
-        listenElement.setAttribute('for', listenerKey);
-        listenElement.setAttribute('on', channel);
-
         var broadcastElement = document.createElement('ceci-broadcast');
         broadcastElement.setAttribute('from', 'Broadcast ' + listenerKey);
         broadcastElement.setAttribute('on', channel);
@@ -54,7 +50,7 @@
 
         var controller = subFolder.add(model, toggleControllerName);
         controller.onChange(function (value) {
-          value ? element.appendChild(listenElement) : element.removeChild(listenElement);
+          value ? element.setListener(listenerKey, channel) : element.removeListener(listenerKey, channel);
         });
 
         if (model[toggleControllerName]) {
@@ -67,15 +63,18 @@
         var subFolder = broadcastsFolder.addFolder(broadcastKey);
         var channel = 'Channel ' + __channels++;
         var broadcastLabel = 'Broadcast';
-        model[broadcastLabel] = element.ceci.defaultBroadcasts ? element.ceci.defaultBroadcasts.indexOf(broadcastKey) > -1 : false;
+        model[broadcastLabel] = !!element.ceci.broadcasts[broadcastKey]['default'];
         model['Output'] = '';
+
         var controller = subFolder.add(model, broadcastLabel);
-        var broadcastElement = element.querySelector('ceci-broadcast[from="' + broadcastKey + '"]') || document.createElement('ceci-broadcast');
-        broadcastElement.setAttribute('from', broadcastKey);
-        broadcastElement.setAttribute('on', channel);
+
         controller.onChange(function (value) {
-          value ? element.appendChild(broadcastElement) : element.removeChild(broadcastElement);
+          value ? element.setBroadcast(broadcastKey, channel) : element.removeBroadcast(broadcastKey, channel);
         });
+
+        if (model[broadcastLabel]) {
+          element.setBroadcast(broadcastKey, channel);
+        };
 
         var outputController = subFolder.add(model, 'Output');
 
@@ -89,13 +88,13 @@
         }
       });
 
-      Object.keys(element.ceci.editable).forEach(function (editableKey) {
+      Object.keys(element.ceci.editables).forEach(function (editableKey) {
         var subFolder = editableFolder.addFolder(editableKey);
         var model = {};
         var controller;
 
         model[editableKey] = element.getAttribute(editableKey) || '';
-        if (model[editableKey] && element.ceci.editable[editableKey].type === 'color') {
+        if (model[editableKey] && element.ceci.editables[editableKey].type === 'color') {
           controller = subFolder.addColor(model, editableKey);
         }
         else {

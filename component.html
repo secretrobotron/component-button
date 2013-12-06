@@ -4,6 +4,26 @@
     <link rel="stylesheet" href="component.css"></link>
     <button id="button" on-click="{{click}}"></button>
     <shadow></shadow>
+    <ceci-definition>
+      <ceci-broadcast-definitions>
+        <ceci-broadcast-definition name="click" description="Occurs when button is clicked." default="true"/>
+      </ceci-broadcast-definitions>
+      <ceci-listener-definitions>
+        <ceci-listener-definition attribute="label" label="Set Label" description="Changes the text shown on the button."/>
+        <ceci-listener-definition attribute="value" label="Set Value" description="Changes the value sent by the button."/>
+        <ceci-listener-definition attribute="textcolor" label="Set Text Color" description="Changes the color of the button's label."/>
+        <ceci-listener-definition attribute="buttoncolor" label="Set Button Color" description="Changes the background color of the button."/>
+        <ceci-listener-definition attribute="buttonactivecolor" label="Set Button Active Color" description="Changes the background color of the button while it is being clicked or tapped."/>
+        <ceci-listener-definition function="click" label="Click" description="Causes a fake click event to occur."/>
+      </ceci-listener-definitions>
+      <ceci-editable-definitions>
+        <ceci-editable-definition attribute="label" type="text" label="Label" description="Text shown on the button" />
+        <ceci-editable-definition attribute="value" type="text" label="Set Value" description="Value sent by the button."/>
+        <ceci-editable-definition attribute="textcolor" type="color" label="Set Text Color" description="Color of the button's label."/>
+        <ceci-editable-definition attribute="buttoncolor" type="color" label="Set Button Color" description="Background color of the button."/>
+        <ceci-editable-definition attribute="buttonactivecolor" type="color" label="Set Button Active Color" description="Background color of the button while it is being clicked or tapped."/>
+      </ceci-editable-definitions>
+    </ceci-definition>
   </template>
   <script>
     Polymer('ceci-button', {
@@ -32,49 +52,6 @@
       },
       buttoncolorChanged: function (oldValue, newValue) {
         this.$.button.style.backgroundColor = newValue;
-      },
-      buttonactivecolorChanged: function (oldValue, newValue) {
-      },
-      ceci: {
-        broadcasts: {
-          click: 'Occurs when button is clicked.'
-        },
-        defaultBroadcasts: ['click'],
-        listeners: {
-          setLabel: 'Set Label',
-          setValue: 'Set Value',
-          setTextColor: 'Set Text Color',
-          setButtonColor: 'Set Button Color',
-          setButtonActiveColor: 'Set Active Button Color',
-          click: 'Initiate a click event'
-        },
-        editable: {
-          'label': {
-            type: "text",
-            description: "A text for your label to show up in your app",
-            name: 'Label',
-          },
-          'textcolor': {
-            type: "color",
-            description: "The color of the button label",
-            name: 'Text Color'
-          },
-          'buttoncolor': {
-            type: "color",
-            description: "The color of your button",
-            name: 'Button Color'
-          },
-          'buttonactivecolor': {
-            type: "color",
-            description: "The color of your button",
-            name: 'Button Active Color'
-          },
-          'value': {
-            type: "text",
-            description: "Value to be sent with a click.",
-            name: 'Value'
-          }
-        }
       }
     });
   </script>

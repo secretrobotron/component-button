@@ -46,7 +46,7 @@
 
         document.body.appendChild(broadcastElement);
 
-        model[toggleControllerName] = element.ceci.defaultListeners ? element.ceci.defaultListeners.indexOf(listenerKey) > -1 : false;
+        model[toggleControllerName] = !!element.ceci.listeners[listenerKey]['default'];
 
         var controller = subFolder.add(model, toggleControllerName);
         controller.onChange(function (value) {
@@ -54,6 +54,7 @@
         });
 
         if (model[toggleControllerName]) {
+          element.setListener(listenerKey, channel);
           subFolder.open();
         }
       });
@@ -72,10 +73,6 @@
           value ? element.setBroadcast(broadcastKey, channel) : element.removeBroadcast(broadcastKey, channel);
         });
 
-        if (model[broadcastLabel]) {
-          element.setBroadcast(broadcastKey, channel);
-        };
-
         var outputController = subFolder.add(model, 'Output');
 
         document.addEventListener(channel, function (e) {
@@ -84,6 +81,7 @@
         }, false);
 
         if (model[broadcastLabel]) {
+          element.setBroadcast(broadcastKey, channel);
           subFolder.open();
         }
       });

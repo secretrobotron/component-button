@@ -8,73 +8,53 @@
       {
         "tags": ["button", "click", "tap"],
         "thumbnail": "./thumbnail.png",
-        "broadcasts": [
-          {
-            "name": "click",
+        "broadcasts": {
+          "click": {
+            "label": "Click",
             "description": "Occurs when button is clicked.",
+            "whatHappened": "was clicked",
             "default": true
           }
-        ],
-        "listeners": [
-          {
-            "attribute": "label",
-            "description": "Changes the text shown on the button.",
-            "label": "Set Label"
-          },
-          {
-            "attribute": "value",
-            "description": "Changes the value sent by the button.",
-            "label": "Set Value",
-            "default": true
-          },
-          {
-            "attribute": "textcolor",
-            "description": "Changes the color of the button's label.",
-            "label": "Set Text Color"
-          },
-          {
-            "attribute": "buttoncolor",
-            "description": "Changes the background color of the button.",
-            "label": "Set Button Color"
-          },
-          {
-            "attribute": "buttonactivecolor",
-            "description": "Changes the background color of the button while it is being clicked or tapped.",
-            "label": "Set Button Active Color"
-          },
-          {
-            "function": "click",
+        },
+        "listeners": {
+          "click": {
             "description": "Causes a fake click event to occur.",
             "label": "Click"
           }
-        ],
-        "editables": [
-          {
-            "attribute": "label",
-            "type": "text",
-            "description": "Text shown on the button."
+        },
+        "attributes": {
+          "label": {
+            "label": "Label",
+            "description": "Text shown on the button.",
+            "editable": "text",
+            "listener": true
           },
-          {
-            "attribute": "value",
-            "type": "text",
-            "description": "Value sent by the button."
+          "value": {
+            "label": "Value",
+            "description": "Value sent by the button.",
+            "editable": "text",
+            "listener": true,
+            "defaultListener": true
           },
-          {
-            "attribute": "textcolor",
-            "type": "color",
-            "description": "Color of the button's label."
+          "textcolor": {
+            "label": "Text Color",
+            "description": "Color of the text on the button's label.",
+            "editable": "color",
+            "listener": true
           },
-          {
-            "attribute": "buttoncolor",
-            "type": "color",
-            "description": "Background color of the button."
+          "buttoncolor": {
+            "label": "Button Color",
+            "description": "Background color of the button.",
+            "editable": "color",
+            "listener": true
           },
-          {
-            "attribute": "buttonactivecolor",
-            "type": "color",
-            "description": "Background color of the button while it is being clicked or tapped."
+          "buttonactivecolor": {
+            "label": "Button Active Color",
+            "description": "Background color of the button while it is being clicked or tapped.",
+            "editable": "color",
+            "listener": true
           }
-        ]
+        }
       }
     </script>
   </template>

@@ -40,24 +40,21 @@
 
         var channel = 'Channel ' + __channels++;
 
-        var listenElement = document.createElement('ceci-listen');
-        listenElement.setAttribute('for', listenerKey);
-        listenElement.setAttribute('on', channel);
-
         var broadcastElement = document.createElement('ceci-broadcast');
         broadcastElement.setAttribute('from', 'Broadcast ' + listenerKey);
         broadcastElement.setAttribute('on', channel);
 
         document.body.appendChild(broadcastElement);
 
-        model[toggleControllerName] = element.ceci.defaultListeners ? element.ceci.defaultListeners.indexOf(listenerKey) > -1 : false;
+        model[toggleControllerName] = !!element.ceci.listeners[listenerKey]['default'];
 
         var controller = subFolder.add(model, toggleControllerName);
         controller.onChange(function (value) {
-          value ? element.appendChild(listenElement) : element.removeChild(listenElement);
+          value ? element.setListener(listenerKey, channel) : element.removeListener(listenerKey, channel);
         });
 
         if (model[toggleControllerName]) {
+          element.setListener(listenerKey, channel);
           subFolder.open();
         }
       });
@@ -67,14 +64,13 @@
         var subFolder = broadcastsFolder.addFolder(broadcastKey);
         var channel = 'Channel ' + __channels++;
         var broadcastLabel = 'Broadcast';
-        model[broadcastLabel] = element.ceci.defaultBroadcasts ? element.ceci.defaultBroadcasts.indexOf(broadcastKey) > -1 : false;
+        model[broadcastLabel] = !!element.ceci.broadcasts[broadcastKey]['default'];
         model['Output'] = '';
+
         var controller = subFolder.add(model, broadcastLabel);
-        var broadcastElement = element.querySelector('ceci-broadcast[from="' + broadcastKey + '"]') || document.createElement('ceci-broadcast');
-        broadcastElement.setAttribute('from', broadcastKey);
-        broadcastElement.setAttribute('on', channel);
+
         controller.onChange(function (value) {
-          value ? element.appendChild(broadcastElement) : element.removeChild(broadcastElement);
+          value ? element.setBroadcast(broadcastKey, channel) : element.removeBroadcast(broadcastKey, channel);
         });
 
         var outputController = subFolder.add(model, 'Output');
@@ -85,17 +81,18 @@
         }, false);
 
         if (model[broadcastLabel]) {
+          element.setBroadcast(broadcastKey, channel);
           subFolder.open();
         }
       });
 
-      Object.keys(element.ceci.editable).forEach(function (editableKey) {
+      Object.keys(element.ceci.editables).forEach(function (editableKey) {
         var subFolder = editableFolder.addFolder(editableKey);
         var model = {};
         var controller;
 
         model[editableKey] = element.getAttribute(editableKey) || '';
-        if (model[editableKey] && element.ceci.editable[editableKey].type === 'color') {
+        if (model[editableKey] && element.ceci.editables[editableKey].type === 'color') {
           controller = subFolder.addColor(model, editableKey);
         }
         else {
@@ -111,6 +108,13 @@
       listenersFolder.open();
       broadcastsFolder.open();
       editableFolder.open();
+
+      var descriptionElement = document.querySelector('#description');
+      descriptionElement.querySelector('h1').innerHTML = element.localName;
+      var thumbnailImage = document.createElement('img');
+      thumbnailImage.src = element.ceci.thumbnail;
+      descriptionElement.querySelector('#thumbnail').appendChild(thumbnailImage);
+      descriptionElement.querySelector('#tags').appendChild(document.createTextNode(element.ceci.tags.join(', ')));
     }
     else {
       console.error('No ceci element marked with data-analyze');

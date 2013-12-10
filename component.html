@@ -3,9 +3,59 @@
   <template>
     <link rel="stylesheet" href="component.css"></link>
     <button id="button" on-click="{{click}}"></button>
-    <content select="ceci-broadcast"></content>
-    <content select="ceci-listen"></content>
     <shadow></shadow>
+    <script type="text/json" id="ceci-definition">
+      {
+        "tags": ["button", "click", "tap"],
+        "thumbnail": "./thumbnail.png",
+        "broadcasts": {
+          "click": {
+            "label": "Click",
+            "description": "Occurs when button is clicked.",
+            "default": true
+          }
+        },
+        "listeners": {
+          "click": {
+            "description": "Causes a fake click event to occur.",
+            "label": "Click"
+          }
+        },
+        "attributes": {
+          "label": {
+            "label": "Label",
+            "description": "Text shown on the button.",
+            "editable": "text",
+            "listener": true
+          },
+          "value": {
+            "label": "Value",
+            "description": "Value sent by the button.",
+            "editable": "text",
+            "listener": true,
+            "defaultListener": true
+          },
+          "textcolor": {
+            "label": "Text Color",
+            "description": "Color of the text on the button's label.",
+            "editable": "color",
+            "listener": true
+          },
+          "buttoncolor": {
+            "label": "Button Color",
+            "description": "Background color of the button.",
+            "editable": "color",
+            "listener": true
+          },
+          "buttonactivecolor": {
+            "label": "Button Active Color",
+            "description": "Background color of the button while it is being clicked or tapped.",
+            "editable": "color",
+            "listener": true
+          }
+        }
+      }
+    </script>
   </template>
   <script>
     Polymer('ceci-button', {
@@ -34,49 +84,6 @@
       },
       buttoncolorChanged: function (oldValue, newValue) {
         this.$.button.style.backgroundColor = newValue;
-      },
-      buttonactivecolorChanged: function (oldValue, newValue) {
-      },
-      ceci: {
-        broadcasts: {
-          click: 'Occurs when button is clicked.'
-        },
-        defaultBroadcasts: ['click'],
-        listeners: {
-          setLabel: 'Set Label',
-          setValue: 'Set Value',
-          setTextColor: 'Set Text Color',
-          setButtonColor: 'Set Button Color',
-          setButtonActiveColor: 'Set Active Button Color',
-          click: 'Initiate a click event'
-        },
-        editable: {
-          'label': {
-            type: "text",
-            description: "A text for your label to show up in your app",
-            name: 'Label',
-          },
-          'textcolor': {
-            type: "color",
-            description: "The color of the button label",
-            name: 'Text Color'
-          },
-          'buttoncolor': {
-            type: "color",
-            description: "The color of your button",
-            name: 'Button Color'
-          },
-          'buttonactivecolor': {
-            type: "color",
-            description: "The color of your button",
-            name: 'Button Active Color'
-          },
-          'value': {
-            type: "text",
-            description: "Value to be sent with a click.",
-            name: 'Value'
-          }
-        }
       }
     });
   </script>

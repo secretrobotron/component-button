@@ -2,7 +2,7 @@
   label="Click Me" textcolor="#ffffff" buttoncolor="#4DB227" buttonactivecolor="#358915">
   <template>
     <link rel="stylesheet" href="component.css"></link>
-    <button id="button" on-click="{{click}}"></button>
+    <button id="button" on-click="{{click}}">{{label}}</button>
     <shadow></shadow>
     <script type="text/json" id="ceci-definition">
       {
@@ -76,9 +76,6 @@
       },
       click: function () {
         this.broadcast('click', this.getAttribute('value'));
-      },
-      labelChanged: function (oldValue, newValue) {
-        this.$.button.innerHTML = newValue;
       },
       textcolorChanged: function (oldValue, newValue) {
         this.$.button.style.color = newValue;

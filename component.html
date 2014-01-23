@@ -1,4 +1,4 @@
-<polymer-element name="ceci-button" attributes="textcolor buttoncolor buttonactivecolor label value" extends="ceci-element"
+<polymer-element name="ceci-button" attributes="textcolor buttoncolor buttonactivecolor label value" value="Click" extends="ceci-element"
   label="Click Me" textcolor="#ffffff" buttoncolor="#4DB227" buttonactivecolor="#358915">
   <template>
     <link rel="stylesheet" href="component.css"></link>
@@ -33,8 +33,7 @@
             "label": "Value",
             "description": "Value sent by the button.",
             "editable": "text",
-            "listener": true,
-            "defaultListener": true
+            "listener": true
           },
           "textcolor": {
             "label": "Text Color",

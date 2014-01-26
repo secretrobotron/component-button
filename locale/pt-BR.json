@@ -3,6 +3,7 @@
     "ceci-button/attributes/label": "Clique em mim",
     "ceci-button/attributes/label/label": "Rótulo",
     "ceci-button/attributes/label/description": "Texto exibido na parte de baixo.",
+    "ceci-button/attributes/value": "Clicar",
     "ceci-button/attributes/value/label": "Valor",
     "ceci-button/attributes/value/description": "Valor enviado pelo botão.",
     "ceci-button/attributes/textcolor/label": "Cor do texto",

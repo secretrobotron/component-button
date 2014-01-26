@@ -3,6 +3,7 @@
     "ceci-button/attributes/label": "กดฉัน",
     "ceci-button/attributes/label/label": "ฉลาก",
     "ceci-button/attributes/label/description": "ข้อความแสดงบนปุ่ม",
+    "ceci-button/attributes/value": "กด",
     "ceci-button/attributes/value/label": "ค่า",
     "ceci-button/attributes/value/description": "ค่าที่ส่งโดยปุ่ม",
     "ceci-button/attributes/textcolor/label": "สีของตัวหนังสือ",

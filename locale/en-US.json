@@ -3,6 +3,7 @@
 	"ceci-button/attributes/label": "Click Me",
 	"ceci-button/attributes/label/label": "Label",
 	"ceci-button/attributes/label/description": "Text shown on the button.",
+	"ceci-button/attributes/value": "Click",
 	"ceci-button/attributes/value/label": "Value",
 	"ceci-button/attributes/value/description": "Value sent by the button.",
 	"ceci-button/attributes/textcolor/label": "Text Color",

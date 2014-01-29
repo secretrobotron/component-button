@@ -1,5 +1,6 @@
 {
     "ceci-button": "Botão",
+    "ceci-button/description": "Transmite um \"clique\" quando clicado.",
     "ceci-button/attributes/label": "Clique em mim",
     "ceci-button/attributes/label/label": "Rótulo",
     "ceci-button/attributes/label/description": "Texto exibido na parte de baixo.",
